@@ -8,34 +8,33 @@ namespace UnitTestGraphs
     [TestClass]
     public class UnitTestArcs
     {
-        [TestMethod]
-        public void UnitTestArcs_TestMethodConstructorEmpty()
+        [TestInitialize()]
+        public void Initialize()
         {
-            Arc n = new Arc();
-            Assert.AreEqual(string.Empty, n.Name);
+            Node.Clean();
         }
 
         [TestMethod]
         public void UnitTestArcs_TestMethodConstructorWithName()
         {
-            Arc n = new Arc("Arc 1");
+            IArc n = Arc.Create("Arc 1",null,null);
             Assert.AreEqual("Arc 1", n.Name);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException),"Name parameter is null.")]
+        [ExpectedException(typeof(ArgumentNullException), "Name must have value")]
         public void UnitTestArcs_TestMethodConstructorWithBadParam()
         {
-            Arc n = new Arc(null);
+                IArc n = Arc.Create(null, null, null);
         }
 
         [TestMethod]
         public void UnitTestArcs_TestMethod_NodeFromTo()
         {
-            INode nA = new Node("A");
-            INode nB = new Node("B");
+            INode nA = Node.Create("A");
+            INode nB = Node.Create("B");
 
-            Arc arc = new Arc("arc 1");
+            Arc arc = Arc.Create("arc 1", nA, nB) as Arc;
 
             arc.From = nA;
             arc.To = nB;
@@ -43,6 +42,5 @@ namespace UnitTestGraphs
             Assert.AreEqual(nA, arc.From);
             Assert.AreEqual(nB, arc.To);
         }
-
     }
 }

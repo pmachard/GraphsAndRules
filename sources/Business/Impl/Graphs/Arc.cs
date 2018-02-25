@@ -15,16 +15,21 @@ namespace Graphs
         public INode From { get; set; }
         public INode To { get; set; }
 
-        public Arc(string name = "")
+        public static IArc Create(string name, INode from, INode to)
+        {
+            return new Arc(name, from, to);
+        }
+
+        private Arc(string name = "", INode from = null, INode to = null)
         {
             if (name == null)
             {
                 throw new ArgumentNullException("name parameter", "is null. Contact Your Admin/DevTeam to fix and add UnitTest");
             }
-            else
-            {
-                Name = name;
-            }
+
+            Name    = name;
+            From    = from;
+            To      = to;
         }
 
         public override bool Equals(Object obj)

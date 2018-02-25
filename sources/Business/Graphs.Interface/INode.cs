@@ -1,16 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Graphs.Interface
 {
-    public interface INode : INamed
+    public interface INode : INamed, IDisposable
     {
-        IList<IArc> ArcBefore { get;  }
-        IList<IArc> ArcAfter { get; }
+        IList<IArc> ArcsBefore { get;  }
+        IList<IArc> ArcsAfter { get; }
+
+        bool ExistArcAfter(IArc arc);
+        bool ExistArcBefore(IArc arc);
 
         void AddArcAfter(IArc arc);
         void AddArcBefore(IArc arc);
 
-        bool ExistArcAfter(IArc arcAB);
-        bool ExistArcBefore(IArc arcAB);
+        void RemoveArcAfter(IArc arc);
+        void RemoveAddArcBefore(IArc arc);
+
+        IList<INode> Way(List<INode> resultBase = null);
+
     }
 }
