@@ -17,16 +17,17 @@ namespace GraphsAndRules
 
         private Fact(string name)
         {
-            if (name == null)
+            if (!IsValidName(name))
             {
-                throw new ArgumentNullException("name parameter", "is null. Contact Your Admin/DevTeam to fix and add UnitTest");
-            }
-            if (name == string.Empty)
-            {
-                throw new ArgumentNullException("name parameter", "is empty. Contact Your Admin/DevTeam to fix and add UnitTest");
+                throw new ArgumentException("name parameter", "is not valid. Contact Your Admin/DevTeam to fix and add UnitTest");
             }
 
             Name = name;
+        }
+
+        public bool IsValidName(string name)
+        {
+            return (name != null) && (name != string.Empty);
         }
 
         public override bool Equals(Object obj)

@@ -14,24 +14,36 @@ namespace UnitTestGraphs
         }
 
         [TestMethod]
-        public void UnitTestArcs_TestMethodConstructorWithName()
+        public void UnitTestArcs_TestMethod_Constructor_With_Name()
         {
             IArc n = Arc.Create("Arc 1",null,null);
             Assert.AreEqual("Arc 1", n.Name);
         }
 
         [TestMethod]
-        public void UnitTestArcs_TestMethodConstructorWithBadParam()
+        public void UnitTestArcs_TestMethod_Constructor_With_BadParam_null()
         {
             try
             {
                 IArc n = Arc.Create(null, null, null);
+                Assert.Fail();
             }
-            catch (ArgumentNullException) { }
-            // [ExpectedException(typeof(ArgumentNullException))]
-    }
+            catch (ArgumentException) { }
+        }
 
-    [TestMethod]
+        [TestMethod]
+        public void UnitTestArcs_TestMethod_Constructor_With_BadParam_Name_Empty()
+        {
+            try
+            {
+                IArc n = Arc.Create(string.Empty, null, null);
+                Assert.Fail();
+            }
+            catch (ArgumentException) { }
+        }
+
+
+        [TestMethod]
         public void UnitTestArcs_TestMethod_NodeFromTo()
         {
             INode nA = Node.Create("A");

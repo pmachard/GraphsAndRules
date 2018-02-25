@@ -28,7 +28,7 @@ namespace UnitTestFact
                 IFact n = Fact.Create(null);
                 Assert.Fail();
             }
-            catch (ArgumentNullException)
+            catch (ArgumentException)
             { }
         }
 
@@ -40,7 +40,7 @@ namespace UnitTestFact
                 IFact n = Fact.Create(string.Empty);
                 Assert.Fail();
             }
-            catch (ArgumentNullException)
+            catch (ArgumentException)
             { }
         }
     }

@@ -12,22 +12,25 @@ namespace GraphsAndRules
 
         private Node(string name = "")
         {
-            if (name == null)
+            if (!IsValidName(name))
             {
-                throw new ArgumentNullException("name parameter", "is null. Contact Your Admin/DevTeam to fix and add UnitTest");
+                throw new ArgumentException("name parameter", "is not valid. Contact Your Admin/DevTeam to fix and add UnitTest");
             }
-            else
-            {
-                Name = name;
-                _arcBefore = new List<IArc>();
-                _arcAfter = new List<IArc>();
-            }
+
+            Name = name;
+            _arcBefore = new List<IArc>();
+            _arcAfter = new List<IArc>();
+        }
+
+        public bool IsValidName(string name)
+        {
+            return (name != null) && (name != string.Empty);
         }
 
         #endregion
 
         #region ---- Implement IDisposable ----
-         
+
         // REF : https://docs.microsoft.com/fr-fr/dotnet/standard/garbage-collection/implementing-dispose       
 
         // Flag: Has Dispose already been called?
