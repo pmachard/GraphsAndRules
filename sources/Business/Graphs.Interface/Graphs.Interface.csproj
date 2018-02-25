@@ -60,11 +60,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IFact.cs" />
     <Compile Include="IArc.cs" />
     <Compile Include="INode.cs" />
-    <Compile Include="INamed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Interface\Common.Interface.csproj">
+      <Project>{64836853-0c2e-4b14-bf5b-ebc91564d06d}</Project>
+      <Name>Common.Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

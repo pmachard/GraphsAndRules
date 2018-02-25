@@ -1,4 +1,4 @@
-﻿namespace Graphs.Interface
+﻿namespace GraphsAndRules
 {
     public interface IFact : INamed
     {

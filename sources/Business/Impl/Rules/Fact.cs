@@ -6,28 +6,27 @@ using System.Threading.Tasks;
 
 namespace GraphsAndRules
 {
-    public class Arc : IArc
+    public class Fact : IFact
     {
         public string Name { get; set; }
 
-        public INode From { get; set; }
-        public INode To { get; set; }
-
-        public static IArc Create(string name, INode from, INode to)
+        public static IFact Create(string name)
         {
-            return new Arc(name, from, to);
+            return new Fact(name);
         }
 
-        private Arc(string name = "", INode from = null, INode to = null)
+        private Fact(string name)
         {
             if (name == null)
             {
                 throw new ArgumentNullException("name parameter", "is null. Contact Your Admin/DevTeam to fix and add UnitTest");
             }
+            if (name == string.Empty)
+            {
+                throw new ArgumentNullException("name parameter", "is empty. Contact Your Admin/DevTeam to fix and add UnitTest");
+            }
 
-            Name    = name;
-            From    = from;
-            To      = to;
+            Name = name;
         }
 
         public override bool Equals(Object obj)
@@ -35,14 +34,13 @@ namespace GraphsAndRules
             if (obj == null || GetType() != obj.GetType())
                 return false;
 
-            Arc arc = (Arc)obj;
-            return (Name == arc.Name) && (From == arc.From) && (To == arc.To);
+            Fact fact = (Fact)obj;
+            return (Name == fact.Name);
         }
 
         public override int GetHashCode()
         {
-            return From.GetHashCode() ^ To.GetHashCode() ^ Name.GetHashCode();
+            return Name.GetHashCode();
         }
-
     }
 }

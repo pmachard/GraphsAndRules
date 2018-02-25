@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Graphs;
-using Graphs.Interface;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using GraphsAndRules;
+using System;
 using System.Collections.Generic;
 
 namespace UnitTestGraphs
@@ -23,25 +22,41 @@ namespace UnitTestGraphs
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException), "Name must have value")]
         public void UnitTestNodes_TestMethodConstructorWithBadParam()
         {
+            try
+            {
                 INode n = Node.Create(null);
+                Assert.Fail();
+            }
+            catch (ArgumentNullException)
+            {
+            }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Name must not be empty")]
         public void UnitTestNodes_TestMethodConstructorEmpty()
         {
+            try
+            {
                 INode n = Node.Create(string.Empty);
+                Assert.Fail();
+            }
+            catch (ArgumentException)
+            { }
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException), "Name must be uniq")]
+    [TestMethod]
         public void UnitTestNodes_TestMethodConstructorWithSameName()
         {
+            try
+            {
                 INode nA = Node.Create("A");
                 INode nAbis = Node.Create("A");
+                Assert.Fail();
+            }
+            catch (ArgumentException)
+            { }
         }
 
         [TestMethod]
@@ -77,27 +92,41 @@ namespace UnitTestGraphs
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void UnitTestNodes_TestMethod_AddArc_BadParameter_1()
         {
+            try
+            {
                 INode nA = Node.Create("A");
                 Node.CreateArc(nA, null);
+                Assert.Fail();
+            }
+            catch (ArgumentNullException) { }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void UnitTestNodes_TestMethod_AddArc_BadParameter_2()
         {
+            try
+            {
                 INode nA = Node.Create("A");
                 Node.CreateArc(null, nA);
+                Assert.Fail();
+            }
+            catch (ArgumentNullException)
+            { }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         public void UnitTestNodes_TestMethod_AddArc_BadParameter_3()
         {
+            try
+            {
                 INode nA = Node.Create("A");
                 Node.CreateArc(nA, nA);
+                Assert.Fail();
+            }
+            catch (ArgumentException)
+            { }
         }
 
         [TestMethod]

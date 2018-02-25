@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Graphs.Interface
+namespace GraphsAndRules
 {
     public interface INode : INamed, IDisposable
     {
