@@ -43,5 +43,29 @@ namespace UnitTestFact
             catch (ArgumentException)
             { }
         }
+
+        [TestMethod]
+        public void UnitTestFact_TestMethod_Constructor_WithName_and_value_string()
+        {
+            IFact fact = Fact.Create("A", "polo");
+            Assert.AreEqual("A", fact.Name);
+            Assert.AreEqual("polo", fact.Value);
+        }
+
+        [TestMethod]
+        public void UnitTestFact_TestMethod_Constructor_WithName_and_value_int()
+        {
+            IFact fact = Fact.Create("B", "10");
+            Assert.AreEqual("B", fact.Name);
+            Assert.AreEqual("10", fact.Value);
+        }
+
+        [TestMethod]
+        public void UnitTestFact_TestMethod_Constructor_WithName_and_value_double()
+        {
+            IFact fact = Fact.Create("C", "1.33");
+            Assert.AreEqual("C", fact.Name);
+            Assert.AreEqual("1.33", fact.Value);
+        }
     }
 }

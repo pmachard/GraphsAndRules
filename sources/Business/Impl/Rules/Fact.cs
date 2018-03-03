@@ -9,13 +9,19 @@ namespace GraphsAndRules
     public class Fact : IFact
     {
         public string Name { get; set; }
+        public string Value { get; set; }
+
+        public static IFact Create(string name, string value)
+        {
+            return new Fact(name, value);
+        }
 
         public static IFact Create(string name)
         {
             return new Fact(name);
         }
 
-        private Fact(string name)
+        private Fact(string name,string value = "")
         {
             if (!IsValidName(name))
             {
@@ -23,6 +29,7 @@ namespace GraphsAndRules
             }
 
             Name = name;
+            Value = value;
         }
 
         public bool IsValidName(string name)
