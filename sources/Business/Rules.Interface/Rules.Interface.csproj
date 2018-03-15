@@ -59,6 +59,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IConclusion.cs" />
+    <Compile Include="IRuleBase.cs" />
+    <Compile Include="IPremise.cs" />
+    <Compile Include="IRule.cs" />
+    <Compile Include="IFactBase.cs" />
     <Compile Include="IFact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

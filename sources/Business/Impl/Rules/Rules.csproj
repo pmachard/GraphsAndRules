@@ -59,6 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Rule.cs" />
+    <Compile Include="RuleBase.cs" />
+    <Compile Include="FactBase.cs" />
     <Compile Include="Fact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

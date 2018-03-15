@@ -67,6 +67,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UnitTestRule.cs" />
     <Compile Include="UnitTestFact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

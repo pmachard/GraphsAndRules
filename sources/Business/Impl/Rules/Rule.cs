@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace GraphsAndRules
 {
-    public class Fact : IFact
+    public class Rule : IRule
     {
         public string Name { get; set; }
-        public string Value { get; set; }
+        public IPremise Premise { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IConclusion Conclusion { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        internal Fact(string name,string value = "")
+        internal Rule(string name)
         {
             if (!IsValidName(name))
             {
                 throw new ArgumentException("name parameter", "is not valid. Contact Your Admin/DevTeam to fix and add UnitTest");
             }
             Name = name;
-            Value = value;
         }
 
         public bool IsValidName(string name)
@@ -38,6 +38,16 @@ namespace GraphsAndRules
         public override int GetHashCode()
         {
             return Name.GetHashCode();
+        }
+
+        public bool PremiseIsChecked(IFactBase factBaseSource)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RunConclusion(IFactBase factBaseSource)
+        {
+            throw new NotImplementedException();
         }
     }
 }

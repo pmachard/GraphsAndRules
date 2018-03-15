@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+********************************************************************
+See https://msdn.microsoft.com/en-us/library/jj635153.aspx#example
+********************************************************************
+-->
+
+<RunSettings>
+  <!-- Configurations that affect the Test Framework -->
+  <RunConfiguration>
+
+    <!--
+This controls the degree of parallel test execution when running unit tests, using available cores on the machine.
+The test execution engine starts as a distinct process on each available core and gives each core a container with tests to run,
+like an assembly, DLL, or relevant artifact. The test container is the scheduling unit. In each container, the tests are run
+according to the test framework. If there are many containers, then as processes finish executing the tests in a container,
+they are given the next available container.
+MaxCpuCount can be:
+    n, where 1 <= n <= number of cores: up to n processes will be launched
+    n, where n = any other value: the number of processes launched will be up to as many as available cores on the machine    
+    -->
+    <!--
+    BORDEL DE MICROSOFT !!!! Ce Putain de paramètre PLANTE
+Détection des tests démarrée
+Paramètres non valides 'RunConfiguration'. XmlElement inattendu : 'MaxCpuCount'.    
+    -->
+    <!-- MaxCpuCount>1</MaxCpuCount -->
+
+    <!-- Path relative to solution directory -->
+    <ResultsDirectory>.\TestResults64</ResultsDirectory>
+
+    <!-- Framework35 | [Framework40] | Framework45 -->
+    <TargetFrameworkVersion>Framework45</TargetFrameworkVersion>
+
+    <!-- [x86] | x64  
+      - You can also change it from menu Test, Test Settings, Default Processor Architecture -->
+    <TargetPlatform>x64</TargetPlatform>
+
+    <TreatTestAdapterErrorsAsWarnings>False</TreatTestAdapterErrorsAsWarnings>
+    
+    <!-- Path to Test Adapters -->
+    <!--
+    BORDEL DE MICROSOFT !!!! Ce Putain de paramètre PLANTE
+Détection des tests démarrée
+Paramètres non valides 'RunConfiguration'. XmlElement inattendu : 'TestAdaptersPaths'.   
+    -->
+    <!-- TestAdaptersPaths>packages\NUnit3TestAdapter.3.4.1\lib;%SystemDrive%\Temp\bar</TestAdaptersPaths -->
+
+  </RunConfiguration>
+
+  <!-- Configurations for data collectors -->
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="Code Coverage" uri="datacollector://Microsoft/CodeCoverage/2.0" assemblyQualifiedName="Microsoft.VisualStudio.Coverage.DynamicCoverageDataCollector, Microsoft.VisualStudio.TraceCollector, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+        <Configuration>
+          
+            <!--
+
+********************************************************************
+See https://msdn.microsoft.com/en-us/library/jj159530.aspx
+********************************************************************
+
+              -->
+          <CodeCoverage>
+            <ModulePaths>
+              <Exclude>
+                <ModulePath>.*CPPUnitTestFramework.*</ModulePath>
+              </Exclude>
+            </ModulePaths>
+
+            <!-- We recommend you do not change the following values: -->
+            <UseVerifiableInstrumentation>True</UseVerifiableInstrumentation>
+            <AllowLowIntegrityProcesses>True</AllowLowIntegrityProcesses>
+            <CollectFromChildProcesses>True</CollectFromChildProcesses>
+            <CollectAspDotNet>False</CollectAspDotNet>
+
+          </CodeCoverage>
+        </Configuration>
+      </DataCollector>
+
+    </DataCollectors>
+  </DataCollectionRunSettings>
+
+  <!-- Parameters used by tests at runtime -->
+  <TestRunParameters>
+    <Parameter name="webAppUrl" value="http://localhost" />
+    <Parameter name="webAppUserName" value="Admin" />
+    <Parameter name="webAppPassword" value="Password" />
+  </TestRunParameters>
+
+  <!-- Adapter Specific sections -->
+
+  <!-- MSTest adapter -->
+  <MSTest>
+    <ForcedLegacyMode>False</ForcedLegacyMode>
+    <IgnoreTestImpact>False</IgnoreTestImpact>
+    <!--SettingsFile>TestSettingsAllSolution64.testsettings</SettingsFile-->
+    <KeepExecutorAliveAfterLegacyRun>False</KeepExecutorAliveAfterLegacyRun>
+    <DeploymentEnabled>False</DeploymentEnabled>
+    <CaptureTraceOutput>True</CaptureTraceOutput>
+    <DeleteDeploymentDirectoryAfterTestRunIsComplete>False</DeleteDeploymentDirectoryAfterTestRunIsComplete>
+    <MapInconclusiveToFailed>False</MapInconclusiveToFailed>
+    <InProcMode>False</InProcMode>
+    <!--
+    BORDEL DE MICROSOFT !!!! Ce Putain de paramètre PLANTE
+Détection des tests démarrée
+Une exception s'est produite lors du chargement des tests par le découvreur 'MSTestDiscoverer'.
+Exception : Une erreur s'est produite lors de l'initialisation du fournisseur de paramètres nommé 'MSTest'.
+Erreur : MSTestAdapter a rencontré un élément inattendu 'AssemblyResolution' dans ses paramètres 'MSTest'.
+Supprimez cet élément et réessayez.
+    -->
+    <!--
+    <AssemblyResolution>
+      <Directory Path="D:\foo\bin\" includeSubDirectories="False"/>
+    </AssemblyResolution>
+    -->
+  </MSTest>
+
+
+</RunSettings>

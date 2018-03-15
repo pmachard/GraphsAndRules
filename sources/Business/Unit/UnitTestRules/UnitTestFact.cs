@@ -10,14 +10,28 @@ namespace UnitTestFact
         [TestInitialize()]
         public void Initialize()
         {
-            // Fact.Clean();
         }
 
         [TestMethod]
         public void UnitTestFact_TestMethod_Constructor_WithName()
         {
-            IFact fact = Fact.Create("Fact 1");
+            var factBase = new FactBase();
+            var fact = factBase.Create("Fact 1");
             Assert.AreEqual("Fact 1", fact.Name);
+        }
+
+        [TestMethod]
+        public void UnitTestFact_TestMethod_Constructor_WithBadParam_name_exist()
+        {
+            try
+            {
+                var factBase = new FactBase();
+                var n1 = factBase.Create("Fact 1");
+                var n2 = factBase.Create("Fact 1");
+                Assert.Fail();
+            }
+            catch (ArgumentException)
+            { }
         }
 
         [TestMethod]
@@ -25,7 +39,8 @@ namespace UnitTestFact
         {
             try
             {
-                IFact n = Fact.Create(null);
+                var factBase = new FactBase();
+                var n = factBase.Create(null);
                 Assert.Fail();
             }
             catch (ArgumentException)
@@ -37,7 +52,8 @@ namespace UnitTestFact
         {
             try
             {
-                IFact n = Fact.Create(string.Empty);
+                var factBase = new FactBase();
+                var n = factBase.Create(string.Empty);
                 Assert.Fail();
             }
             catch (ArgumentException)
@@ -47,7 +63,8 @@ namespace UnitTestFact
         [TestMethod]
         public void UnitTestFact_TestMethod_Constructor_WithName_and_value_string()
         {
-            IFact fact = Fact.Create("A", "polo");
+            var factBase = new FactBase();
+            var fact = factBase.Create("A", "polo");
             Assert.AreEqual("A", fact.Name);
             Assert.AreEqual("polo", fact.Value);
         }
@@ -55,7 +72,9 @@ namespace UnitTestFact
         [TestMethod]
         public void UnitTestFact_TestMethod_Constructor_WithName_and_value_int()
         {
-            IFact fact = Fact.Create("B", "10");
+            var factBase = new FactBase();
+            var fact = factBase.Create("B", "10");
+
             Assert.AreEqual("B", fact.Name);
             Assert.AreEqual("10", fact.Value);
         }
@@ -63,7 +82,9 @@ namespace UnitTestFact
         [TestMethod]
         public void UnitTestFact_TestMethod_Constructor_WithName_and_value_double()
         {
-            IFact fact = Fact.Create("C", "1.33");
+            var factBase = new FactBase();
+            var fact = factBase.Create("C", "1.33");
+
             Assert.AreEqual("C", fact.Name);
             Assert.AreEqual("1.33", fact.Value);
         }
